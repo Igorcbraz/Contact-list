@@ -32,7 +32,7 @@ Join in the folder of the project, and run :
 npm install
 npm install --global expo-cli
 ```
-And run the project
+Run the project
 ```
 expo start
 ```
