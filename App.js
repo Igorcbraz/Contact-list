@@ -1,15 +1,19 @@
 import React from 'react';
-import { View } from 'react-native';
+import { View, Text } from 'react-native';
 
 import { Header } from './src/components/Header/Header';
-import { RenderList , maxPeoples} from './src/components/RenderList/RenderList';
+import { PeoplesList } from './src/components/People/PeoplesList';
+
+import { usePeoplesJson } from './src/Hooks/usePeoplesJson';
 
 
 export default function App() {
+  const peoples = usePeoplesJson();
+
   return (
-    <View>
-      <Header title="📞 Seus Contatos 📱" paragraph={`Total de Contatos: ${maxPeoples}`}/>
-      <RenderList/>
+      <View>
+        <Header title="📞 Seus Contatos 📱" paragraph={`Total de contatos: ${peoples.length}`}/>
+        <PeoplesList/>
     </View>
   );
 }
