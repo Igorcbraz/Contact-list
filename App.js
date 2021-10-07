@@ -1,20 +1,44 @@
 import React from 'react';
-import { View, Text } from 'react-native';
+import { NavigationContainer } from '@react-navigation/native';
+import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 
-import { Header } from './src/components/Header/Header';
-import { PeoplesList } from './src/components/People/PeoplesList';
+import { Contacts } from './src/Pages/Contacts'
+import { Home } from './src/Pages/Home'
+import { Details } from './src/Pages/Details'
 
-import { usePeoplesJson } from './src/Hooks/usePeoplesJson';
+import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 
 
+const Tab = createBottomTabNavigator();
 export default function App() {
-  const peoples = usePeoplesJson();
-
   return (
-      <View>
-        <Header title="📞 Seus Contatos 📱" paragraph={`Total de contatos: ${peoples.length}`}/>
-        <PeoplesList/>
-    </View>
+    <NavigationContainer>
+      <Tab.Navigator>
+        <Tab.Screen name="Detalhes" component={Details} 
+          options={{
+            tabBarLabel: 'Profile',
+            tabBarIcon: ({ color, size }) => (
+              <MaterialCommunityIcons name="account" color={color} size={size} />
+            ),
+          }}
+        />
+        <Tab.Screen name="Home" component={Home} 
+          options={{
+            tabBarLabel: 'Home',
+            tabBarIcon: ({ color, size }) => (
+              <MaterialCommunityIcons name="home" color={color} size={size} />
+            ),
+          }}
+        />
+        <Tab.Screen name="Seus Contatos" component={Contacts} 
+          options={{
+            tabBarLabel: 'Seus Contatos',
+            tabBarIcon: ({ color, size }) => (
+              <MaterialCommunityIcons name="contacts" color={color} size={size} />
+            ),
+          }}
+        />
+      </Tab.Navigator>
+    </NavigationContainer>
   );
 }
-

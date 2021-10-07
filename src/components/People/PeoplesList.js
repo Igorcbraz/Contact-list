@@ -2,7 +2,7 @@ import React from 'react';
 import { View, Text, StyleSheet, Image, FlatList } from 'react-native';
 import { usePeoplesJson } from '../../Hooks/usePeoplesJson';
 
-export function PeoplesList(props){
+export function PeoplesList(){
     const peoples = usePeoplesJson();
 
     return (
@@ -11,9 +11,9 @@ export function PeoplesList(props){
             data={peoples}
             renderItem={({item}) => 
                 <View style={style.container}>
-                <Text style={style.title}>{item.name.first}</Text>
-                <Text style={style.email}>{item.email}</Text>
-                <Image style={style.logo} source={{uri: item.picture.thumbnail}}/>
+                    <Text style={style.title}>{item.name.first}</Text>
+                    <Text style={style.email}>{item.email}</Text>
+                    <Image style={style.logo} source={{uri: item.picture.thumbnail}}/>
                 </View>
             }
             />
