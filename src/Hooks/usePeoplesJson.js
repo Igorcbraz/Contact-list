@@ -11,7 +11,8 @@ export function usePeoplesJson(){
         setPeople(data.results);
         };
         getInfo();
+        
     }, [])  
-
+    
     return people;
 }

@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, Text, StyleSheet } from 'react-native';
+import { View, Text, StyleSheet, Image } from 'react-native';
 
 export function Header(props) {
     return(
@@ -9,6 +9,9 @@ export function Header(props) {
             </Text>
             <Text style={style.paragraph}>
                 {props.paragraph}
+                {props.image && (
+                    <Image style={style.logo} source={{uri: props.image}}/>
+                )}
             </Text>       
         </View>
     );
@@ -31,7 +34,6 @@ const style = StyleSheet.create({
         paddingTop: 40,
         paddingBottom: 20,
     },
-
     paragraph: {
         fontSize: 18,
         fontWeight: '400',
@@ -40,7 +42,17 @@ const style = StyleSheet.create({
         borderRadius: 10,
         color: '#39375B',
 
+        display: 'flex',
+        alignItems: 'center',
         padding: 10,
         marginBottom: 15,
+    },
+    logo: {
+        width: 40,
+        height: 40,
+        borderRadius: 5,
+        borderWidth: 3,
+        marginLeft: 10,
+        borderColor: '#745C97',
     }
 })

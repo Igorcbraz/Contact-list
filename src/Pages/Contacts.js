@@ -1,5 +1,5 @@
 import React from 'react';
-import { View } from 'react-native';
+import { ScrollView, View } from 'react-native';
 
 import { Header } from '../components/Header/Header.js';
 import { PeoplesList } from '../components/People/PeoplesList';
@@ -7,13 +7,15 @@ import { PeoplesList } from '../components/People/PeoplesList';
 import { usePeoplesJson } from '../Hooks/usePeoplesJson';
 
 
-export function Contacts() {
+export function Contacts({navigation}) {
   const peoples = usePeoplesJson();
 
   return (
     <View>
       <Header title="📞 Seus Contatos 📱" paragraph={`Total de contatos: ${peoples.length}`}/>
-      <PeoplesList/>
+      <ScrollView>
+        <PeoplesList navigation={navigation}/>
+      </ScrollView>
     </View>
   );
 }

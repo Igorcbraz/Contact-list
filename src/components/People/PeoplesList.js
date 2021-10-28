@@ -1,22 +1,23 @@
 import React from 'react';
-import { View, Text, StyleSheet, Image, FlatList } from 'react-native';
+import { View, Text, StyleSheet, Image, FlatList, TouchableOpacity } from 'react-native';
 import { usePeoplesJson } from '../../Hooks/usePeoplesJson';
 
-export function PeoplesList(){
+export function PeoplesList({navigation}){
     const peoples = usePeoplesJson();
 
     return (
         <View style={style.view}>
             <FlatList
-            data={peoples}
-            renderItem={({item}) => 
-                <View style={style.container}>
-                    <Text style={style.title}>{item.name.first}</Text>
-                    <Text style={style.email}>{item.email}</Text>
+                data={peoples}
+                renderItem={({item}) => 
+                <TouchableOpacity style={style.container} onPress={() => {
+                    navigation.navigate('Profile', item)
+                }}>
                     <Image style={style.logo} source={{uri: item.picture.thumbnail}}/>
-                </View>
-            }
-            />
+                    <Text style={style.title}>{item.name.first}</Text>
+                    <Text style={style.cell}>{item.cell}</Text>
+                </TouchableOpacity>
+            }/>
         </View>
     );
 }
@@ -28,14 +29,18 @@ const style = StyleSheet.create({
     },
     container: {
         padding: 10,
-        marginTop: 30,
-        width: 300,
+        marginTop: 15,
+        width: '90vw',
+        maxWidth: 500,
 
         borderWidth: 2,
-        borderColor: "#745C97",
+        borderColor: "#E1E4EC",
         borderRadius: 10,
 
+        display: 'flex',
         alignItems: 'center',
+        justifyContent: 'space-between',
+        flexDirection: 'row',
 
         shadowColor: "#745C97",
         shadowOffset: {
@@ -52,17 +57,17 @@ const style = StyleSheet.create({
         color: '#745C97',
         fontWeight: 'bold',
     },
-    email: {
+    cell: {
         fontSize: 13,
         color: '#745C97',
         marginTop: 10,
         marginBottom: 10,
     },
     logo: {
-        width: 66,
-        height: 58,
-        borderRadius: 10,
-        borderWidth: 3,
+        width: 70,
+        height: 70,
+        borderRadius: 9999,
+        borderWidth: 2.5,
         borderColor: '#745C97',
     },
 })
