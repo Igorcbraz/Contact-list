@@ -4,7 +4,7 @@ import axios from 'axios';
 export function usePeoplesJson() {
   const [people, setPeople] = useState([]);
 
-  //Get JSON from randomuser API
+  //Get JSON from random user API
   useEffect(() => {
     async function getInfo() {
       const { data } = await axios.get(
